@@ -1,0 +1,85 @@
+    {% extends 'base.html' %}
+
+    {% load static %}
+
+    {% block 'main' %}
+
+    <!DOCTYPE html>
+    <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+    <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+    <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+    <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title></title>
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="">
+        </head>
+        <body>
+            <div class="container mt-4" ><!--filter start-->
+                <div class="row bg-body-secondary">
+                    <div class="col-md-4 ">
+                        <h5>Filter by category</h5>
+                        <hr>
+                        <p><a class="anchor" href="/catfilter/1">By Mobile</a></p>
+                        <p><a class="anchor" href="/catfilter/2">By Shoes</a></p>
+                        <p><a class="anchor" href="/catfilter/3">By Cloths</a></p>
+
+                        <h5>Filter by Price</h5>
+                        <hr>
+                        <div class="mb-3">
+                        <form action="/range">
+                            <label for="Input1" class="form-label">Min Value</label>
+                            <input type="number" name='min' class="form-control" id="Input1" placeholder="Min Value">
+                            <label for="Input2" class="form-label">Max Value</label>
+                            <input type="number" name='max' class="form-control" id="Input2" placeholder="Max Value">
+
+                            <div class="mb-3">
+                            <input type="submit" value="Submit" class="btn btn-danger">
+                            </div>
+                        </form>
+                    </div>
+                    <h5>Sorted by Price</h5>
+                    <hr>
+                    <p><a class="anchor" href="/sort/0">Low to High</a></p>
+                    <p><a class="anchor" href="/sort/1">High to Low</a></p>
+
+                    </div><!-- Filter end-->
+
+                    <div class="col-md-8 mt-4">
+                        <div class="row">
+                        {% for x in products %}
+                            <div class="col-md-4 mt-4"> <!--Product 1 start-->
+                                <div class="card" style="width: 100%;">
+                                    <img src="{{x.pimage.url}}" width="100%" height="250px" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                    <h5 class="card-title">{{x.name}}</h5>
+                                    <p class="card-text">Rs.{{x.price}}</p>
+                                    <!--<p class="card-text">{{x.cat}}</p>-->
+                                    {% if x.cat == 1 %}
+                                    <p class="card-text">Mobile</p>
+                                    {% elif x.cat == 2 %}
+                                    <p class="card-text">Shoes</p>
+                                    {% else %}
+                                    <p class="card-text">Cloths</p>
+                                    {% endif %}
+                                    <a href="/pdetails/{{x.id}}" class="btn btn-primary">See Details</a>
+                                    </div>
+                                </div>
+                            </div> <!--Product 1 end-->
+                            {% endfor %}
+
+
+                        </div>
+                    </div><!-- product end-->
+                </div>
+            </div><!-- Product and filter end -->
+            <script src="" async defer></script>
+        </body>
+    </html>
+
+
+    {% endblock 'main'%}

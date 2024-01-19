@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Register</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'asset\css\bootstrap.min.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md=12">
+                    <a href="/home" style="text-decoration: none;">Home</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 shadow mt-4 p-4 mx-auto">
+                    <h2>Registration</h2>
+                    {% if errmsg %}
+                    <div class="alert alert-danger">
+                        {{errmsg}}
+                    </div>
+                    {% endif %}
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="input1" class="form-label">Username:</label>
+                            <input type="email" class="form-control" id="input1" name="uname" placeholder="Enter user name">
+                          </div>
+                          <div class="mb-3">
+                            <label for="input2" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="input2" name="upass" placeholder="Enter password">
+                          </div>
+                          <div class="mb-3">
+                            <label for="input3" class="form-label">ConfirmPassword</label>
+                            <input type="password" class="form-control" id="input3" name="ucpass" placeholder="ReEnter password">
+                          </div>
+                          <input type="submit" class="btn btn-danger" value="Register">
+                          <br>
+                          Already User? <a href="/login" style="text-decoration: none;">LogIn</a>
+                          {% if success%}
+                          <div class="alert alert-success">
+                            {{success}}
+                            </div>
+                          {%endif%}
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        
+        <script src="{% static 'asset\js\bootstrap.min.js' %}" async defer></script>
+    </body>
+</html>
+
+
